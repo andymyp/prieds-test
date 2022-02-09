@@ -10,15 +10,12 @@ const getQueues = async (req, res, next) => {
 };
 
 const createQueue = async (req, res, next) => {
-  const { error } = validate(req.body);
-  if (error) {
-    return res.status(422).send({
-      code: "danger",
-      message: error.details[0].message,
-    });
-  }
+  const queues = await Queue.find().sort({ createdAt: -1 }).exec();
 
-  let queue = new Queue(req.body);
+  let currentNumber = queues[0] ? queues[0].number : "A000";
+  let newNumber = incrementNumberQueue(currentNumber);
+
+  let queue = new Queue({ number: newNumber });
 
   queue = await queue.save();
   res.status(200).send({
@@ -26,6 +23,26 @@ const createQueue = async (req, res, next) => {
     message: "Queue created",
     data: queue,
   });
+};
+
+const incrementNumberQueue = (number) => {
+  var parseNumber = parseInt(number.trim().match(/\d+$/), 10);
+  var letter = number.trim().match(/^[A-Za-z]/)[0];
+  var newNumber = "";
+
+  if (parseNumber >= 999) {
+    parseNumber = 1;
+    letter = String.fromCharCode(letter.charCodeAt(0) + 1);
+    letter = letter === "[" ? "A" : letter === "{" ? "a" : letter;
+  } else {
+    parseNumber++;
+  }
+
+  newNumber =
+    "000".substring(0, "000".length - parseNumber.toString().length) +
+    parseNumber;
+
+  return letter + newNumber.toString();
 };
 
 const deleteQueue = async (req, res, next) => {

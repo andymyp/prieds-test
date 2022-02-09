@@ -128,16 +128,6 @@
         "summary": "Create queue",
         "operationId": "createQueue",
         "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Queue"
-            }
-          }
-        ],
         "responses": {
           "default": {
             "description": "successful operation"
@@ -186,15 +176,6 @@
         }
       },
       "required": ["name", "gender", "address", "phone"]
-    },
-    "Queue": {
-      "type": "object",
-      "properties": {
-        "number": {
-          "type": "string"
-        }
-      },
-      "required": ["number"]
     }
   }
 }
