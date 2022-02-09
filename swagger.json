@@ -1,0 +1,200 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API CRUD Documentation",
+    "version": "1.0",
+    "description": "API CRUD Documentation for integration data for customer hospital.",
+    "contact": {
+      "email": "andymyp1997@gmail.com"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": "http",
+  "paths": {
+    "/visitors": {
+      "get": {
+        "tags": ["Visitor"],
+        "summary": "Get list of visitors",
+        "operationId": "getVisitors",
+        "produces": ["application/json"],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/visitor": {
+      "post": {
+        "tags": ["Visitor"],
+        "summary": "Create visitor",
+        "operationId": "createVisitor",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Visitor"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/visitor/{id}": {
+      "get": {
+        "tags": ["Visitor"],
+        "summary": "Get detail visitor",
+        "operationId": "getVisitor",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Visitor"],
+        "summary": "Update visitor",
+        "operationId": "updateVisitor",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Visitor"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Visitor"],
+        "summary": "Delete visitor",
+        "operationId": "deleteVisitor",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/queues": {
+      "get": {
+        "tags": ["Queue"],
+        "summary": "Get list of queues",
+        "operationId": "getQueues",
+        "produces": ["application/json"],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/queue": {
+      "post": {
+        "tags": ["Queue"],
+        "summary": "Create queue",
+        "operationId": "createQueue",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Queue"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/queue/{id}": {
+      "delete": {
+        "tags": ["Queue"],
+        "summary": "Delete queue",
+        "operationId": "deleteQueue",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Visitor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female"]
+        },
+        "address": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "integer"
+        }
+      },
+      "required": ["name", "gender", "address", "phone"]
+    },
+    "Queue": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        }
+      },
+      "required": ["number"]
+    }
+  }
+}
