@@ -25,3 +25,9 @@ OR
 ```bash
 npm run dev
 ```
+
+## API Documentation
+
+```bash
+http://localhost:3000/docs
+```
